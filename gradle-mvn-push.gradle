@@ -80,6 +80,7 @@ afterEvaluate { project ->
                         developer {
                             id POM_DEVELOPER_ID
                             name POM_DEVELOPER_NAME
+                            email POM_DEVELOPER_EMAIL
                         }
                     }
                 }
@@ -94,7 +95,7 @@ afterEvaluate { project ->
 
     task androidJavadocs(type: Javadoc) {
         failOnError false
-        source = android.sourceSets.main.allJava
+        source = android.sourceSets.main.java.source
         classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     }
 
