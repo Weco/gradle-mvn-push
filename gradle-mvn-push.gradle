@@ -96,12 +96,6 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-    task androidJavadocs(type: Javadoc) {
-        failOnError false
-        source = android.sourceSets.main.java.source
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-
     if (project.getPlugins().hasPlugin('android') || project.getPlugins().hasPlugin('android-library')) {
         task install(type: Upload, dependsOn: assemble) {
             repositories.mavenInstaller {
@@ -142,8 +136,9 @@ afterEvaluate { project ->
         }
 
         task androidJavadocs(type: Javadoc) {
-            source = android.sourceSets.main.allJava
-            classpath += project.files(android.plugin.getRuntimeJarList().join(File.pathSeparator))
+            failOnError false
+            source = android.sourceSets.main.java.source
+            classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
         }
 
         task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
