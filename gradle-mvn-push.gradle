@@ -199,7 +199,7 @@ afterEvaluate { project ->
     }
 
     artifacts {
-        if (project.getPlugins().hasPlugin('android') || project.getPlugins().hasPlugin('android-library')) {
+        if (project.getPlugins().hasPlugin('com.android.application') || project.getPlugins().hasPlugin('com.android.library')) {
             archives androidSourcesJar
             archives androidJavadocsJar
         } else {
